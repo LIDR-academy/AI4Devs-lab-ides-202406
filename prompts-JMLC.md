@@ -193,6 +193,13 @@ erDiagram
 Puedes ir indicando paso a paso los ficheros a crear y su contenido?
 
 
+> He tenido problemas al ejecutar la migración de la base de datos con `npx node-pg-migrate up`. 
+> No he sido capaz de solucionarlo con CodeGPT. He cambiado a Cursor.sh para ver si me ayudaba más y tampoco.
+> El problema estaba en que creé un fichero .env en la raíz, al lado de docker-compose.yml para poder ejecutar bien el entorno dockerizado con `docker compose up -d db` pero luego para la migración se estaba usando uno que ya existía en la carpeta backend.
+
+> Tras corregir el .env de la carpeta backend, he podido ejecutar `npx node-pg-migrate up` sin problemas.
+
+> Se ha utilizado el autocompletado de cursor.sh para documentar esta parte en el Readme.md
 
 
 ## Prompts Fase 3) Implementar Tarea 2: Tarea de backend
