@@ -127,8 +127,8 @@ No debes implementar nada, solo realizar la descripción de la tarea. Puedes inc
 ## Prompts Fase 2) Implementar Tarea 1: Modelo de datos
 
 Vamos a implementar la primera tarea. Recordemos:
-----
-**Tarea Técnica 1: Diseño y Creación de la Base de Datos**
+
+### Tarea Técnica 1: Diseño y Creación de la Base de Datos**
 
 **Objetivo**: Diseñar y crear una base de datos PostgreSQL para almacenar información de candidatos, incluyendo sus datos personales, educación, experiencia laboral y documentos.
 
@@ -189,7 +189,7 @@ erDiagram
     CANDIDATO ||--o{ EXPERIENCIA_LABORAL : "puede tener"
     CANDIDATO ||--o{ DOCUMENTO : "puede tener"
 ```
-----
+
 Puedes ir indicando paso a paso los ficheros a crear y su contenido?
 
 
@@ -202,10 +202,21 @@ Puedes ir indicando paso a paso los ficheros a crear y su contenido?
 > Se ha utilizado el autocompletado de cursor.sh para documentar esta parte en el Readme.md
 
 
-## Prompts Fase 3) Implementar Tarea 2: Tarea de backend
-- Backend necesario para procesar la información ingresada en el formulario
+## Prompts Fase 3) Implementar Tarea 2: Tarea de backend (Usando IDE Cursor.sh)
 
----
+### Antes de lanzar la tarea he corregido los test, que fallaban:
+```
+Como puedo corregir este warning cuando utilizo `npm test`?
+
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+'This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+```
+
+
+### Ahora sí, la tarea:
+----
 **Tarea Técnica 2: Implementación del API REST para añadir candidatos**
 
 **Objetivo**: Desarrollar un API REST en el módulo backend para permitir la adición de candidatos y su información asociada al sistema ATS.
@@ -215,16 +226,17 @@ Puedes ir indicando paso a paso los ficheros a crear y su contenido?
 **Estructura de paquetes propuesta**:
 ```
 src/
+├── application/
+│   └── AddCandidate.ts
 ├── domain/
 │   ├── entities/
 │   │   ├── Candidate.ts
+│   │   ├── CandidateId.ts
 │   │   ├── Education.ts
 │   │   ├── WorkExperience.ts
 │   │   └── Document.ts
 │   ├── repositories/
 │   │   └── ICandidateRepository.ts
-│   └── services/
-│       └── CandidateService.ts
 ├── infrastructure/
 │   ├── database/
 │   │   └── PostgresCandidateRepository.ts
@@ -233,13 +245,10 @@ src/
 │       │   └── CandidateController.ts
 │       └── routes/
 │           └── candidateRoutes.ts
-├── application/
-│   └── usecases/
-│       └── AddCandidateUseCase.ts
 └── tests/
     ├── unit/
-    │   └── services/
-    │       └── CandidateService.test.ts
+    │   └── application/
+    │       └── AddCandidateUseCase.test.ts
     └── integration/
         └── api/
             └── addCandidate.test.ts
@@ -480,7 +489,9 @@ Notas adicionales:
 - Para los documentos, el contenido se envía como una cadena codificada en base64 para facilitar la transmisión de archivos binarios.
 - La autenticación se realiza mediante un token JWT en el encabezado de Autorización.
 - Los campos de fechaCreacion y fechaActualizacion son generados por el servidor y devueltos en la respuesta.
----
+----
+
+
 
 ## Prompts Fase 4) Implementar Tarea 3: Tarea de frontend
 - Implementar la interfaz de usuario para el formulario de "Añadir candidato"
