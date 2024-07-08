@@ -216,8 +216,10 @@ Jest did not exit one second after the test run has completed.
 
 
 ### Ahora sí, la tarea:
-----
-**Tarea Técnica 2: Implementación del API REST para añadir candidatos**
+
+Vamos a implementar la segunda tarea. Recordemos:
+
+### Tarea Técnica 2: Implementación del API REST para añadir candidatos
 
 **Objetivo**: Desarrollar un API REST en el módulo backend para permitir la adición de candidatos y su información asociada al sistema ATS.
 
@@ -254,26 +256,34 @@ src/
             └── addCandidate.test.ts
 ```
 
-**Pasos**:
+**Paso 1** 
+1. **Implementar pruebas de integración**:
+    * Escribir pruebas para el endpoint de añadir candidato en tests/integration/api/addCandidate.test.ts.
+    * Esta prueba solo comprobará el código 201 pero ya pasará toda la información como se define en la especificación.
+2. **Desarrollar controlador HTTP**:
+    * Implementar CandidateController en infrastructure/http/controllers/ para manejar las solicitudes HTTP. En este primer punto devolverá 201
+3. **Definir rutas API**:
+    * Crear candidateRoutes.ts en infrastructure/http/routes/ para definir los endpoints del API.
+4. Aquí probaremos que el endpoint funcione. No sigas hasta que compruebe.
+
+**Paso 2**
 1. **Implementar entidades del dominio**:
     * Crear las clases Candidate, Education, WorkExperience, y Document en el directorio domain/entities/.
     * Estas clases deben encapsular la lógica de negocio y las validaciones pertinentes.
-2. **Definir interfaces de repositorio**:
+2. **Implementar casos de uso**:
+    * Crear AddCandidateUseCase en application para encapsular la lógica de añadir un candidato.
+3. **Definir interfaces de repositorio**:
     * Crear ICandidateRepository en domain/repositories/ para definir los métodos de acceso a datos.
-3. **Implementar casos de uso**:
-    * Crear AddCandidateUseCase en application/usecases/ para encapsular la lógica de añadir un candidato.
-4. **Desarrollar servicios del dominio**:
-    * Implementar CandidateService en domain/services/ para manejar la lógica de negocio relacionada con los candidatos.
-5. **Implementar repositorio concreto**:
-    * Crear PostgresCandidateRepository en infrastructure/database/ que implemente ICandidateRepository.
-6. **Desarrollar controlador HTTP**:
-    * Implementar CandidateController en infrastructure/http/controllers/ para manejar las solicitudes HTTP.
-7. **Definir rutas API**:
-    * Crear candidateRoutes.ts en infrastructure/http/routes/ para definir los endpoints del API.
-8. **Implementar pruebas unitarias**:
-    * Escribir pruebas para CandidateService en tests/unit/services/CandidateService.test.ts.
-9. **Implementar pruebas de integración**:
-    * Escribir pruebas para el endpoint de añadir candidato en tests/integration/api/addCandidate.test.ts.
+4. **Implementar pruebas unitarias**:
+    * Escribir pruebas para AddCandidateUseCase en tests/unit/application/AddCandidateUseCase.test.ts.
+5. **Modificar CandidateController para llamar a AddCandidateUseCase**
+6. Aquí probaremos que el endpoint funcione. No sigas hasta que compruebe.
+
+**Paso 3**
+1. **Implementar repositorio concreto**:
+  * Crear PostgresCandidateRepository en infrastructure/database/ que implemente ICandidateRepository.
+2. Aquí probaremos que el endpoint funcione mirando en Base de datos.
+
 
 **Criterios de Aceptación**:
 - El API debe permitir añadir un candidato con toda su información asociada en una sola llamada.
@@ -286,12 +296,6 @@ src/
 - Utilizar Value Objects para encapsular conceptos del dominio como Email o PhoneNumber.
 - Implementar pruebas unitarias antes de escribir el código de producción (TDD).
 - Utilizar mocks y stubs para aislar las pruebas unitarias de dependencias externas.
-
-**Entregables**:
-- Código fuente del API REST implementado según la estructura de paquetes propuesta.
-- Pruebas unitarias y de integración que cubran los casos de uso principales.
-- Documentación del API (puede ser generada automáticamente con herramientas como Swagger).
-- Esta tarea técnica establece una base sólida para el desarrollo del backend siguiendo principios de DDD y TDD, lo que facilitará la mantenibilidad y escalabilidad del sistema a largo plazo.
 
 **Especificación de la petición REST para añadir un candidato**
 
