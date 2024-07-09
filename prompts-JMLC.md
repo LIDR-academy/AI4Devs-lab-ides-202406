@@ -552,10 +552,8 @@ You can find the definitions at @migrations  folder
 
 
 ## Prompts Fase 4) Implementar Tarea 3: Tarea de frontend
-- Implementar la interfaz de usuario para el formulario de "Añadir candidato"
-- La interfaz debe ser intuitiva y fácil de usar para minimizar el tiempo de entrenamiento necesario para los nuevos reclutadores.
 
-
+Vamos a implementar la Tarea: Implementar la interfaz de usuario para el formulario de añadir candidato. Debes tener en cuenta el endpoint creado en la Tarea 2.
 ----
 **Tarea: Implementar la interfaz de usuario para el formulario de añadir candidato**
 
@@ -613,6 +611,30 @@ You can find the definitions at @migrations  folder
 - Optimizar el rendimiento, especialmente al manejar formularios grandes o cargas de archivos.
 - Considerar la internacionalización para futuros requisitos de múltiples idiomas
 ----
+
+> Empiezo a copiar los 4 componentes generados y hay errores en los import. Pulso en "AI Fix with Chat".
+
+```
+En la pantalla principal debería haber un enlace hacia otra donde encontremos el formulario. ¿Cómo puedo hacer eso?
+```
+```
+Falla el import de 'react-router-dom'
+```
+
+### Intentar primero hacer otra pantalla
+
+```
+For the code present, we get this error:
+Module '"react-router-dom"' has no exported member 'Switch'.
+
+How can I resolve this? If you propose a fix, please make it concise.
+```
+```
+Hay forma de poner una Route por defecto?
+```
+
+### Ahora empezamos a copiar los componentes propuestos en el primer prompt de la tarea.
+
 
 ## Prompts Fase 5) Extras
 - Considerar la posibilidad de integrar funcionalidades de autocompletado para los campos de educación y experiencia laboral, basados en datos preexistentes en el sistema.
