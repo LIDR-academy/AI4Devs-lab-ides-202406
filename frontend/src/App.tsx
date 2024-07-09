@@ -2,13 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
+import AddCandidateForm from './addCandidate/AddCandidateForm';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/add-candidate" element={<h1>Candidate form</h1>} />
+          <Route path="/add-candidate" element={<AddCandidateForm/>} />
           <Route path="*" element={
             <header className="App-header">
               <h1>Applicant Tracking System</h1>

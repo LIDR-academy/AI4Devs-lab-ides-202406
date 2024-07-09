@@ -634,6 +634,14 @@ Hay forma de poner una Route por defecto?
 ```
 
 ### Ahora empezamos a copiar los componentes propuestos en el primer prompt de la tarea.
+```
+Para qué sirve la librería Yup que me has propuesto en @AddCandidateForm.tsx?
+```
+```
+Puedes añadir a @AddCandidateForm.tsx  todos los campos de un Candidato? Puedes verlos en @Candidate.ts 
+```
+
+> Se han resuelto varios imports
 
 
 ## Prompts Fase 5) Extras
