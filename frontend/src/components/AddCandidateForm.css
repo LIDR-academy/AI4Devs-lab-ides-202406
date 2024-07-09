@@ -1,0 +1,25 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.form-field {
+  margin: 10px 0;
+  width: 80%;
+  max-width: 500px; /* Ensures the form does not stretch too wide on larger screens */
+}
+
+.form-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-field {
+	width: 90%;
+  }
+}
