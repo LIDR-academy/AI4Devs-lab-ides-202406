@@ -34,24 +34,29 @@ const upload = multer({ dest: 'uploads/' }); // Configure multer, setting upload
 
 app.post('/api/candidates', upload.single('resume'), async (req, res) => {
   try {
-    const { name, email } = req.body; // Now multer parses 'name' and 'email'
+    // Log the entire request body to inspect it
+    console.log(req.body);
+    const { name, email, lastName, phoneNumber, address, education, workExperience, resume } = req.body;
+    // Assuming 'resume' is handled appropriately, e.g., saving the file and storing its path
     if (!name || !email) {
       return res.status(400).send('Missing name or email');
     }
-
-    // Proceed with your existing logic
-    // Example: Save the candidate using Prisma
     const candidate = await prisma.candidate.create({
       data: {
-        firstName: name,
+        name, // Map 'name' from the request to 'firstName' expected by Prisma
         email,
+        lastName,
+        phoneNumber,
+        address,
+        education,
+        workExperience,
+        cv: resume, // Ensure this is the path to the stored file or similar
       },
     });
-
     res.status(201).json(candidate);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("An error occurred while processing your request.");
   }
 });
 

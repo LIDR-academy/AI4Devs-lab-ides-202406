@@ -6,7 +6,12 @@ const AddCandidateForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    resume: null, // Added for file
+    lastName: '',
+    phoneNumber: '',
+    address: '',
+    education: '',
+    workExperience: '',
+    resume: null, // Assuming 'cv' is handled as 'resume' in the form
   });
   const [formErrors, setFormErrors] = useState({});
 
@@ -19,16 +24,23 @@ const AddCandidateForm = () => {
     setFormData({ ...formData, resume: e.target.files[0] });
   };
 
+  const validateForm = () => {
+    let errors = {};
+    if (!formData.name.trim()) errors.name = "Name is required.";
+    if (!formData.email.trim()) errors.email = "Email is required.";
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // Validation logic here
-  
+    if (!validateForm()) return;
+
     const data = new FormData();
-    data.append('name', formData.name);
-    data.append('email', formData.email);
-    data.append('resume', formData.resume);
-  
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value !== null) data.append(key, value);
+    });
+
     try {
       const response = await axios.post('http://localhost:3010/api/candidates', data, {
         headers: {
@@ -59,6 +71,46 @@ const AddCandidateForm = () => {
         value={formData.email}
         onChange={handleInputChange}
         placeholder="Email"
+        className="form-field"
+      />
+      <input
+        type="text"
+        name="lastName"
+        value={formData.lastName}
+        onChange={handleInputChange}
+        placeholder="Last Name"
+        className="form-field"
+      />
+      <input
+        type="text"
+        name="phoneNumber"
+        value={formData.phoneNumber}
+        onChange={handleInputChange}
+        placeholder="Phone Number"
+        className="form-field"
+      />
+      <input
+        type="text"
+        name="address"
+        value={formData.address}
+        onChange={handleInputChange}
+        placeholder="Address"
+        className="form-field"
+      />
+      <input
+        type="text"
+        name="education"
+        value={formData.education}
+        onChange={handleInputChange}
+        placeholder="Education"
+        className="form-field"
+      />
+      <input
+        type="text"
+        name="workExperience"
+        value={formData.workExperience}
+        onChange={handleInputChange}
+        placeholder="Work Experience"
         className="form-field"
       />
       <input

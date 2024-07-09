@@ -14,15 +14,15 @@ datasource db {
 }
 
 model Candidate {
-  id            Int      @id @default(autoincrement())
-  firstName     String
-  lastName      String?
-  email         String
-  phoneNumber   String?
-  address       String?
-  education     String?
+  id             Int      @id @default(autoincrement())
+  name           String   // Updated field
+  lastName       String?
+  email          String
+  phoneNumber    String?
+  address        String?
+  education      String?
   workExperience String?
-  cv            String? // Path to CV file or similar
+  cv             String? // Path to CV file or similar
 }
 
 model User {
