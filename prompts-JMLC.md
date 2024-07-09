@@ -643,6 +643,14 @@ Puedes añadir a @AddCandidateForm.tsx  todos los campos de un Candidato? Puedes
 
 > Se han resuelto varios imports
 
+### Añadimos mas campos al formulario
+```
+Puedes revisar el formulario de @AddCandidateForm.tsx  para incluir todos los campos de las relaciones @WorkExperience.ts , @Document.ts  y @Education.ts ?
+```
+
+
+
+
 
 ## Prompts Fase 5) Extras
 - Considerar la posibilidad de integrar funcionalidades de autocompletado para los campos de educación y experiencia laboral, basados en datos preexistentes en el sistema.

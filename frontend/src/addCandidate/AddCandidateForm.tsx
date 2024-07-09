@@ -16,17 +16,26 @@ const schema = Yup.object().shape({
     education: Yup.array().of(
         Yup.object().shape({
             institution: Yup.string().required('La institución es obligatoria'),
-            // ... otros campos de educación
+            degree: Yup.string().required('El grado es obligatorio'),
+            startDate: Yup.string().required('La fecha de inicio es obligatoria'),
+            endDate: Yup.string(),
         })
     ),
     workExperience: Yup.array().of(
         Yup.object().shape({
             company: Yup.string().required('La empresa es obligatoria'),
-            // ... otros campos de experiencia laboral
+            position: Yup.string().required('El puesto es obligatorio'),
+            startDate: Yup.string().required('La fecha de inicio es obligatoria'),
+            endDate: Yup.string(),
+            description: Yup.string(),
         })
     ),
     documents: Yup.array().of(
-        Yup.mixed().required('El documento es obligatorio')
+        Yup.object().shape({
+            fileName: Yup.string().required('El nombre del archivo es obligatorio'),
+            type: Yup.string().required('El tipo de archivo es obligatorio'),
+            content: Yup.string().required('El contenido del archivo es obligatorio'),
+        })
     )
 });
 
@@ -102,9 +111,9 @@ const AddCandidateForm: React.FC = () => {
                     />
                 )}
             />
-            <EducationForm />
-            <WorkExperienceForm />
-            <FileUpload />
+            <EducationForm control={control} errors={errors} />
+            <WorkExperienceForm control={control} errors={errors} />
+            <FileUpload control={control} errors={errors} />
             <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
                 {isSubmitting ? <CircularProgress size={24} /> : 'Añadir Candidato'}
             </Button>
