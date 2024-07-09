@@ -495,6 +495,18 @@ Notas adicionales:
 - Los campos de fechaCreacion y fechaActualizacion son generados por el servidor y devueltos en la respuesta.
 ----
 
+```
+Necesito que addCAndidate.test.ts, cuando finalice el test (en el método afterAll) borre el candidato creado. Para ello debe hacerlo directamente contra la base de datos PostgreSQL.
+```
+
+> Si lanzaba este prompt desde dentro del fichero addCandidate.test.ts no lo hacía bien. Intentaba por 2 vaces hacerlo via DELETE /api/candidate que no existía y luego usando un módulo inventado de conexión a BBDD y diciendo que lo crease.
+> Al hacerlo desde el Chat, si que ha hecho la sugerencia correcta.
+
+
+Inline comment en addCandidate.test.ts:
+```
+// Check against database that candidate is created
+```
 
 
 ## Prompts Fase 4) Implementar Tarea 3: Tarea de frontend
