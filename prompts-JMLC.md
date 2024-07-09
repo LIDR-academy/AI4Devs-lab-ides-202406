@@ -508,6 +508,48 @@ Inline comment en addCandidate.test.ts:
 // Check against database that candidate is created
 ```
 
+> Al haber modificado la tarea para hacerla iterativa por pasos, se ha dejado toda la parte de Relaciones del candidato: WorkExperience, Education y Documents.
+
+```
+Puedes revisar con la descripción de la Tarea 2 y listar lo que falta por hacer?
+```
+> No ha encontrado nada nuevo por hacer.
+
+```
+Faltan los siguientes puntos por hacer de la tarea:
+- Añadir el resto de información del candidato: Education (array), WorkExperience (array) y Documents (array)
+- Añadir test de aceptación para datos inválidos de entrada
+- Utilizar Value Objects para encapsular conceptos como Email, PhoneNumber
+```
+
+> Al lanzar el test para el segundo punto, el test falla porque espera un 400 pero recibe un 201. Se hace "Debug with AI"
+> Identifica correctamente el problema y dic que yo debería implementar la validación de los datos en AddCandidateUseCase.test.ts
+
+```
+Puedes añadir las validaciones necesarias para los datos que se reciben en la clase @Candidate.ts ? teniendo en cuenta los Value Objects creados PhoneNumber y Email?
+```
+
+```
+La clase ValidationError no existe. Hay algun estándar para este tipo de validaciones?
+```
+
+### Resolución de varios errores...
+```
+En el try-catch de @CandidateController.ts  puedes distinguir entre un error ValidationError o uno genérico? el primero devolverá un HTTP 400 y el segundo un HTTP 500
+```
+> Da un error "DatabaseError". Se investiga con 'Debug with AI' pero solo dice de tratarlo en un catch aparte.
+
+```
+Puedes crear un test de integración para la clase @PostgresCandidateRepository.ts ?
+```
+```
+Please help me debug this code. Only debug the latest error.
+```
+```
+You can find the definitions at @migrations  folder
+```
+
+
 
 ## Prompts Fase 4) Implementar Tarea 3: Tarea de frontend
 - Implementar la interfaz de usuario para el formulario de "Añadir candidato"
