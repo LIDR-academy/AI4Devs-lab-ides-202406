@@ -7,4 +7,5 @@ export interface CandidateErrors {
   education?: string;
   workExperience?: string;
   cv?: string;
+  global?: string;
 }

@@ -2,17 +2,26 @@
 
 import React, { useState } from "react";
 import { useAddCandidateForm } from "./useAddCandidateForm";
-import { Candidate } from "./Candidate";
 
-export interface AddCandidateFormProps {
-  onSubmit: (candidate: Candidate) => void;
-}
+const AddCandidateForm: React.FC = () => {
+  const {
+    submitForm,
+    formData,
+    setFormData,
+    validateForm,
+    validateStep1,
+    validateStep2,
+    errors,
+  } = useAddCandidateForm();
 
-const AddCandidateForm: React.FC<AddCandidateFormProps> = ({ onSubmit }) => {
-  const { formData, setFormData, validateForm, validateStep1, validateStep2, errors, setErrors, resetForm } =
-    useAddCandidateForm();
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [step, setStep] = useState(1);
+
+  const handleResetForm = () => {
+    setIsSubmitted(false);
+    setStep(1);
+  };
+
   const nextStep = () => {
     if (step === 1 && !validateStep1()) {
       console.error("Validation failed", errors);
@@ -36,15 +45,14 @@ const AddCandidateForm: React.FC<AddCandidateFormProps> = ({ onSubmit }) => {
       console.error("Validation failed", errors);
       return;
     }
-    onSubmit(formData);
-    resetForm();
+    submitForm(formData);
+    setIsSubmitted(true);
   };
 
-  // Componente AddCandidateForm actualizado
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit}>
-        {step === 1 && (
+        {step === 1 && !isSubmitted && (
           <>
             {
               <div className="form-group">
@@ -81,7 +89,7 @@ const AddCandidateForm: React.FC<AddCandidateFormProps> = ({ onSubmit }) => {
             }
           </>
         )}
-        {step === 2 && (
+        {step === 2 && !isSubmitted && (
           <>
             {
               <div className="form-group">
@@ -168,7 +176,7 @@ const AddCandidateForm: React.FC<AddCandidateFormProps> = ({ onSubmit }) => {
             }
           </>
         )}
-        {step === 3 && (
+        {step === 3 && !isSubmitted && (
           <>
             {
               <div className="form-group">
@@ -195,17 +203,27 @@ const AddCandidateForm: React.FC<AddCandidateFormProps> = ({ onSubmit }) => {
         )}
 
         <div className="form-navigation">
-          {step > 1 && (
+          {step > 1 && !isSubmitted && (
             <button type="button" onClick={prevStep}>
               Anterior
             </button>
           )}
-          {step < 3 && (
+          {step < 3 && !isSubmitted && (
             <button type="button" onClick={nextStep}>
               Siguiente
             </button>
           )}
-          {step === 3 && <button type="submit">Enviar</button>}
+          {step === 3 && !isSubmitted && <button type="submit">Enviar</button>}
+          {isSubmitted && !errors.global && (
+            <div>
+              <div>Formulario guardado satisfactoriamente!</div>
+              <br />
+              <button onClick={handleResetForm}>Enviar otro formulario</button>
+            </div>
+          )}
+          {isSubmitted && errors.global && (
+            <div className="error">{errors.global}</div>
+          )}
         </div>
       </form>
     </div>
