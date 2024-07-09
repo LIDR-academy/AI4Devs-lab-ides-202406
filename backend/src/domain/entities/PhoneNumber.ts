@@ -8,7 +8,7 @@ export class PhoneNumber {
     }
 
     private isValidPhoneNumber(phone: string): boolean {
-        const phoneRegex = /^\d{10}$/;
+        const phoneRegex = /^\d{9}$/;
         return phoneRegex.test(phone);
     }
 

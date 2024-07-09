@@ -45,8 +45,40 @@ const AddCandidateForm: React.FC = () => {
     });
 
     const onSubmit = async (data: any) => {
-        // Lógica para enviar los datos al backend
-        console.log(data);
+        const payload = {
+            candidate: {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                email: data.email,
+                phone: data.phone,
+                address: data.address,
+            },
+            education: data.education,
+            workExperience: data.workExperience,
+            documents: data.documents
+        };
+
+        try {
+            const response = await fetch('http://localhost:3010/api/candidates', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            if (!response.ok) {
+                throw new Error('Error al añadir el candidato: ' + result.message);
+            }
+
+            alert(result.message);
+            // Aquí puedes manejar la respuesta, como mostrar un mensaje de éxito
+        } catch (error: any) {
+            console.error('Error:', error);
+            alert(error.message);
+            // Aquí puedes manejar el error, como mostrar un mensaje de error
+        }
     };
 
     return (

@@ -648,9 +648,25 @@ Puedes añadir a @AddCandidateForm.tsx  todos los campos de un Candidato? Puedes
 Puedes revisar el formulario de @AddCandidateForm.tsx  para incluir todos los campos de las relaciones @WorkExperience.ts , @Document.ts  y @Education.ts ?
 ```
 
+### Añadimos peticion al API REST
+```
+Vamos a implementar la petición al API REST para añadir un candidato, definida en @CandidateController.ts  desde el formulario @AddCandidateForm.tsx 
+```
+
+```
+Se produce el siguiente error en el navegador al hacer la petición:
+Access to fetch at 'http://localhost:3010/api/candidates' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+```
+
+```
+El cuerpo de la petición no es correcto. Se espera que cumpla con este OpenAPI, por lo que los campos del candidato deen estar en un objeto 'candidate' al mismo nivel que workExperience, education y documents
+Adjunto el OpenAPI
+```
 
 
 
 
 ## Prompts Fase 5) Extras
+- En el UseCase añadir validación de email repetido, etc.
 - Considerar la posibilidad de integrar funcionalidades de autocompletado para los campos de educación y experiencia laboral, basados en datos preexistentes en el sistema.
+- Usar datepicker

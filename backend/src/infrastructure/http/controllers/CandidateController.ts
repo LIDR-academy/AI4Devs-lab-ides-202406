@@ -25,6 +25,7 @@ export class CandidateController {
             await useCase.execute(candidate);
             res.status(201).send({ message: 'Candidate added successfully' });
         } catch (error: any) {
+            console.error(error);
             if (error.name === 'ValidationError') {
                 res.status(400).send({ message: error.message });
             } else {

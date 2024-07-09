@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFieldArray, Controller } from 'react-hook-form';
-import { TextField, Button, IconButton, Input } from '@mui/material';
+import { TextField, Button, IconButton } from '@mui/material';
 import { Add, Remove } from '@mui/icons-material';
 
 const FileUpload: React.FC<{ control: any, errors: any }> = ({ control, errors }) => {
