@@ -64,7 +64,7 @@ Would you like me to elaborate on any part of these tickets or provide any addit
 
 ## Copilot prompts
 
-The conversation was long, with a lot of problems. It took me a while but finally it worked. Here is all the github copilot chat:
+The conversation was long, with a lot of problems. It took me a while but finally it worked. Here are all the github copilot chat:
 
 rgarciademarina: hello
 
