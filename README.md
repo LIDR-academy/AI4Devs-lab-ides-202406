@@ -93,3 +93,12 @@ Para detener el contenedor Docker, ejecuta el siguiente comando:
 ```
 docker-compose down
 ```
+
+## Migraciones
+
+Se utiliza [node-pg-migrate](https://www.npmjs.com/package/node-pg-migrate) para las migraciones de la base de datos.
+
+Para migrar la base de datos, ejecuta el siguiente comando en la raíz del proyecto:
+```
+npx node-pg-migrate up
+```

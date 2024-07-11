@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import express from 'express';
+import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
+import candidateRoutes from './infrastructure/http/routes/candidateRoutes';
 
 dotenv.config();
 const prisma = new PrismaClient();
@@ -10,6 +12,10 @@ export const app = express();
 export default prisma;
 
 const port = 3010;
+
+app.use(cors());
+app.use(express.json());
+app.use('/api', candidateRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hola LTI!');
@@ -21,6 +27,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(500).send('Something broke!');
 });
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
