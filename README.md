@@ -7,6 +7,12 @@ Este proyecto es una aplicación full-stack con un frontend en React y un backen
 - `backend/`: Contiene el código del lado del servidor escrito en Node.js.
   - `src/`: Contiene el código fuente para el backend.
     - `index.ts`: El punto de entrada para el servidor backend.
+    - `aplicación/`: Contiene la capa de aplicación, responsable de orquestar los objetos del dominio para realizar tareas de aplicación. Esta capa media entre las capas de dominio e infraestructura, definiendo el comportamiento de la aplicación.
+    - `dominio/`: El núcleo de la lógica empresarial. Incluye entidades, objetos de valor, servicios de dominio y eventos de dominio. Esta capa encapsula las reglas y el conocimiento del negocio.
+    - `infraestructura/`: proporciona capacidades técnicas que sustentan la aplicación, como acceso a bases de datos, almacenamiento de archivos e integración de servicios externos. Implementa interfaces definidas en la capa de dominio.
+    - `interfaces/`: Contiene las interfaces que la aplicación expone al mundo exterior. Podrían ser API REST, puntos finales GraphQL o comandos CLI. Traduce solicitudes del mundo externo en acciones realizadas por la capa de aplicación.
+    - `common/`: para utilidades y ayudantes compartidos que se utilizan en diferentes capas de la aplicación. Esto incluye el registro, el manejo de errores y otras preocupaciones transversales.
+- `configuración/`: contiene configuraciones de aplicaciones, ajustes y detalles específicos del entorno. Esto puede incluir configuraciones de conexión de bases de datos, claves API y otros parámetros de configuración.
   - `prisma/`: Contiene el archivo de esquema de Prisma para ORM.
   - `tsconfig.json`: Archivo de configuración de TypeScript.
   - `.env`: Contiene las variables de entorno.
