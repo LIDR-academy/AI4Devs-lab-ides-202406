@@ -1,10 +1,14 @@
 import { z } from 'zod';
+import { parseISO } from 'date-fns';
 
 export const applicantSchema = z.object({
   firstName: z.string().trim().min(2).max(120),
   lastName: z.string().trim().min(2).max(120),
   socialSecurityNumber: z.optional(z.string().max(20)),
-  dateOfBirth: z.optional(z.string().max(20)), // Consider using a date validation library
+  dateOfBirth: z.optional(z.string().refine((value) => {
+    const dateOfBirth = parseISO(value);
+    return dateOfBirth instanceof Date && !isNaN(dateOfBirth.getTime());
+  }, 'Invalid date format')),
   email: z.string().email(),
   phoneCode: z.string().min(2).max(3),
   phone: z.string().max(10),

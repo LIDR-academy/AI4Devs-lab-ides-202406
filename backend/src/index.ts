@@ -1,14 +1,11 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
-import dotenv from 'dotenv';
 import { postApplicant } from './interfaces/controllers/ApplicantController';
 
 dotenv.config();
-const prisma = new PrismaClient();
 
 export const app = express();
-export default prisma;
 
 app.use(express.json());
 
