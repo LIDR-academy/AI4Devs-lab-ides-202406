@@ -10,13 +10,14 @@ export const applicantSchema = z.object({
     return dateOfBirth instanceof Date && !isNaN(dateOfBirth.getTime());
   }, 'Invalid date format')),
   email: z.string().email(),
-  phoneCode: z.string().min(2).max(3),
+  phoneCode: z.string().min(1).max(3),
   phone: z.string().max(10),
+  country: z.string().max(3), // Assuming ISO-3166-1 alpha-3
+  state: z.string().max(2), // Assuming ISO-3166-1 alpha-2
+  city: z.string().max(120),
   street: z.optional(z.string().max(80)),
   exteriorNumber: z.optional(z.string().max(10)),
   interiorNumber: z.optional(z.string().max(10)),
-  city: z.string().max(120),
-  country: z.string().max(3), // Assuming ISO-3166-1 alpha-3
   education: z.string().trim(),
   professionalExperience: z.string().trim(),
 });
