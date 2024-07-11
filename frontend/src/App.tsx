@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { styled } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import NavigationBar from './components/NavigationBar';
+import ApplicantForm from './components/ApplicantForm';
+import ApplicantDashboard from './components/ApplicantDashboard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* <NavigationBar /> */}
+      <RootContent>
+        <Routes>
+          <Route path="/" element={<ApplicantDashboard />} />
+          <Route path="/add-applicant" element={<ApplicantForm />} />
+        </Routes>
+      </RootContent>
+    </Router>
   );
 }
+
+const RootContent = styled('div')`
+  display: flex;
+`;
 
 export default App;

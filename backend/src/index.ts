@@ -1,13 +1,15 @@
-import { Request, Response, NextFunction } from 'express';
-import express from 'express';
-import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
+import express from 'express';
+import { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
+import { postApplicant } from './interfaces/controllers/ApplicantController';
 
 dotenv.config();
-const prisma = new PrismaClient();
 
 export const app = express();
-export default prisma;
+
+app.use(cors());
+app.use(express.json());
 
 const port = 3010;
 
@@ -20,6 +22,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.type('text/plain'); 
   res.status(500).send('Something broke!');
 });
+
+app.post('/applicant', postApplicant);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
