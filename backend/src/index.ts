@@ -1,12 +1,14 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import { postApplicant } from './interfaces/controllers/ApplicantController';
 
 dotenv.config();
 
 export const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 const port = 3010;
