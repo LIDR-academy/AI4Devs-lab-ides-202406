@@ -14,7 +14,80 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id             BigInt   @id @default(autoincrement())
+  email          String   @unique
+  password       String
+  name           String?
+  applicants     Applicant[]
+  applicantFiles ApplicantFile[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime?
+  deletedAt      DateTime?
+}
+
+model Applicant {
+  id                     BigInt   @id @default(autoincrement()) @map("id")
+  createdBy              BigInt?
+  firstName              String
+  lastName               String
+  socialSecurityNumber   String?
+  dateOfBirth            String?
+  email                  String
+  phoneCode              String   @db.VarChar(3)
+  phone                  String
+  country                String
+  state                  String
+  city                   String
+  street                 String?
+  exteriorNumber         String?
+  interiorNumber         String?
+  education              String
+  professionalExperience String
+  status                 Status   @default(new)
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime?
+  deletedAt              DateTime?
+  files                  ApplicantFile[]
+  user                   User?    @relation(fields: [createdBy], references: [id])
+}
+
+model ApplicantFile {
+  id          BigInt   @id @default(autoincrement()) @map("id")
+  applicantId BigInt
+  createdBy   BigInt?
+  type        FileType
+  name        String   @db.VarChar(100)
+  extension   FileExtension
+  mimetype    String   @db.VarChar(50)
+  path        String   @db.VarChar(150)
+  hash        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime?
+  deletedAt   DateTime?
+  applicant   Applicant @relation(fields: [applicantId], references: [id])
+  user        User?     @relation(fields: [createdBy], references: [id])
+}
+
+enum Status {
+  new
+  open
+  review
+  interview
+  screening
+  negotiation
+  hired
+  rejected
+  declined
+}
+
+enum FileType {
+  resume
+  certification
+  other
+}
+
+enum FileExtension {
+  doc
+  docx
+  pdf
 }
