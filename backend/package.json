@@ -10,13 +10,15 @@
         "test": "jest",
         "prisma:init": "npx prisma init",
         "prisma:generate": "npx prisma generate",
-        "start:prod": "npm run build && npm start"
+        "start:prod": "npm run build && npm start",
+        "test:candidate": "jest src/tests/candidate.test.ts"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@prisma/client": "^5.13.0",
+        "axios": "^1.7.5",
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
         "swagger-jsdoc": "^6.2.8",
